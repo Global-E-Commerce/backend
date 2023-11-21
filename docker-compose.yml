@@ -2,9 +2,12 @@ version: '3.4'  # Use version 3.4 or higher for platform specification
 
 services:
   zookeeper:
-    image: wurstmeister/zookeeper
+    image: zookeeper:latest
     ports:
       - "2181:2181"
+    volumes:
+      - zookeeper_data:/data
+      - zookeeper_datalog:/datalog
 
   kafka:
     image: wurstmeister/kafka
@@ -17,6 +20,13 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
+  cmak:
+    image: hlebalbau/kafka-manager:latest
+    ports:
+      - "9000:9000"
+    environment:
+      ZK_HOSTS: "host.docker.internal:2181"
+
   redis:
     image: redis/redis-stack:latest
     volumes:
@@ -24,3 +34,7 @@ services:
     ports:
       - "6379:6379"
       - "8001:8001"
+
+volumes:
+  zookeeper_data:
+  zookeeper_datalog:

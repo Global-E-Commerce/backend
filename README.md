@@ -5,6 +5,7 @@ We have the following services running inside docker containers:
 - redis: port 6379
 - zookeeper: port 2181
 - kafka: port 9092
+- CMAK: port 9000
 - redisInsight: port 8001
 
 Make sure there's no local service running on these ports. (i.e, use `brew services stop [SERVICE-NAME]` to stop a local service on Mac)
@@ -28,11 +29,18 @@ docker-compose up -d
 start the spring application
 
 ### Step 4:
+
+#### Test basic backend apis
 `GET /hello` should return `Hello World` as response.
+
+#### Test Kafka
 `GET /send-message?message=<MESSAGE>` should:
 - print `Received message in group mygroup: <MESSAGE>` in the console.
 - return `Message sent to Kafka topic` as response.
 
+You can open [localhost:9000](http://localhost:9000)
+
+#### Test redis
 `GET /set?key=<KEY>&value=<VALUE>` should:
 - return `Value set in Redis` as response.
 - A key-value pair `<KEY>: <VALUE>` should display at http://localhost:8001
