@@ -7,7 +7,7 @@
         <id column="id" property="id" />
         <result column="username" property="username" />
         <result column="email" property="email" />
-        <result column="password_hashed" property="passwordHash" />
+        <result column="password_hashed" property="passwordHashed" />
     </resultMap>
 
     <select id="selectUserAuthById" resultType="com.globalecommerce.backend.entity.UserAuth">
@@ -15,15 +15,16 @@
     </select>
 
     <insert id="insertUserAuth" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO user_auth (username, email, passwordHash)
-        VALUES (#{username}, #{email}, #{passwordHash})
+        INSERT INTO user_auth (username, email, password_hashed)
+        VALUES (#{username}, #{email}, #{passwordHashed})
     </insert>
 
     <update id="updateUserAuth">
         UPDATE user_auth
-        SET username = #{username}, email = #{email}, password_hashed = #{passwordHash}
+        SET username = #{username}, email = #{email}, password_hashed = #{passwordHashed}
         WHERE id = #{id}
     </update>
+
 
     <select id="selectAllUsers" resultMap="userAuthMap">
         SELECT * FROM user_auth

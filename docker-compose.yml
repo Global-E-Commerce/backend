@@ -35,6 +35,22 @@ services:
       - "6379:6379"
       - "8001:8001"
 
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: 'e-commerce'          # The name of the database to create
+      MYSQL_USER: 'appuser'                    # The MySQL user
+      MYSQL_PASSWORD: 'appuserpassword'           # The MySQL password for your application user
+      MYSQL_ROOT_PASSWORD: 'commerce'   # The password for the root user
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./src/main/resources/db:/docker-entrypoint-initdb.d
+      - mysql_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+
 volumes:
+  mysql_data:
   zookeeper_data:
   zookeeper_datalog:

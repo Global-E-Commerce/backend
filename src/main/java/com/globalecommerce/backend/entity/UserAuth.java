@@ -21,8 +21,8 @@ public class UserAuth {
     @Column(nullable = false, unique = true, length = 100)
     private String email;
 
-    @Column(name = "password_hash", nullable = false, length = 255)
-    private String passwordHash;
+    @Column(name = "password_hashed", nullable = false, length = 255)
+    private String passwordHashed;
 
     @Column(name = "phone_number", length = 20)
     private String phoneNumber;
@@ -83,12 +83,12 @@ public class UserAuth {
         this.email = email;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPasswordHashed() {
+        return passwordHashed;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPasswordHashed(String passwordHashed) {
+        this.passwordHashed = passwordHashed;
     }
 
     public String getPhoneNumber() {
