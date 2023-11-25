@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.globalecommerce.backend.dao.UserAuthDao">
+
+    <resultMap id="userAuthMap" type="com.globalecommerce.backend.entity.UserAuth">
+        <id column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="email" property="email" />
+        <result column="password_hashed" property="passwordHash" />
+    </resultMap>
+
+    <select id="selectUserAuthById" resultType="com.globalecommerce.backend.entity.UserAuth">
+    SELECT * FROM user_auth WHERE id = #{id}
+    </select>
+
+    <insert id="insertUserAuth" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user_auth (username, email, passwordHash)
+        VALUES (#{username}, #{email}, #{passwordHash})
+    </insert>
+
+    <update id="updateUserAuth">
+        UPDATE user_auth
+        SET username = #{username}, email = #{email}, password_hashed = #{passwordHash}
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectAllUsers" resultMap="userAuthMap">
+        SELECT * FROM user_auth
+    </select>
+
+</mapper>
