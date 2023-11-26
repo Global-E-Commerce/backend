@@ -40,7 +40,7 @@ services:
     environment:
       MYSQL_DATABASE: 'e-commerce'          # The name of the database to create
       MYSQL_USER: 'appuser'                    # The MySQL user
-      MYSQL_PASSWORD: 'appuserpassword'           # The MySQL password for your application user
+      MYSQL_PASSWORD: 'appuserpassword'           # The MySQL password application user
       MYSQL_ROOT_PASSWORD: 'commerce'   # The password for the root user
     ports:
       - "3307:3306"
